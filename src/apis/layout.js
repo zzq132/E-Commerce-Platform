@@ -1,5 +1,5 @@
 import httpInstance from "@/utils/http.js"
 
-export function getCategory() {
+export function getCategoryAPI() {
     return httpInstance.get("/home/category/head")
 }
