@@ -1,8 +1,12 @@
 import httpInstance from "@/utils/http.js"
 import { h } from "vue"
 
-export function getBannerAPI() {
-    return httpInstance.get("home/banner")
+export function getBannerAPI(distributionSite = 1) {
+    return httpInstance.get("home/banner", {
+        params: {
+            distributionSite: distributionSite
+        }
+    })
 }
 
 export function getNewProductAPI() {
