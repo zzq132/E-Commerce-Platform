@@ -1,7 +1,7 @@
 // 封装分类数据业务相关代码
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
 import { getCategoryAPI } from '@/apis/category.js'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 
 export function useCategory() {
     let categoryData = ref({})
@@ -13,8 +13,11 @@ export function useCategory() {
         console.log(response)
     }
 
-    watch(() => route.params.id, (newValue) => {
-        getCategory(newValue)
+    // 新加载页面时获取数据
+    onMounted(() => getCategory())
+
+    onBeforeRouteUpdate((to) => {
+        getCategory(to.params.id)
     })
 
     return { categoryData }

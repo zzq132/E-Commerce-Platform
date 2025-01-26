@@ -3,8 +3,8 @@ import { useBanner } from './composables/useBanner.js'
 import { useCategory } from './composables/useCategory.js'
 import GoodsItem from '../Home/components/GoodsItem.vue'
 
-let {categoryData}=useCategory()
-let {bannerPicture}=useBanner()
+let { categoryData } = useCategory()
+let { bannerPicture } = useBanner()
 </script>
 
 <template>
@@ -30,7 +30,7 @@ let {bannerPicture}=useBanner()
         <h3>全部分类</h3>
         <ul>
           <li v-for="i in categoryData.children" :key="i.id">
-            <RouterLink to="/">
+            <RouterLink :to="`/category/sub/${i.id}`">
               <img :src="i.picture" />
               <p>{{ i.name }}</p>
             </RouterLink>
@@ -61,6 +61,7 @@ let {bannerPicture}=useBanner()
     height: 500px;
   }
 }
+
 .top-category {
   h3 {
     font-size: 28px;
