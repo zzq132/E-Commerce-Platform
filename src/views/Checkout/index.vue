@@ -133,6 +133,7 @@ async function createOrder(){
           <div class="total">
             <dl>
               <dt>商品件数：</dt>
+              <!-- 首次渲染时没有数据访问属性会报undefined的错，所以要加上'?'问号 -->
               <dd>{{ checkInfo.summary?.goodsCount }}件</dd>
             </dl>
             <dl>
