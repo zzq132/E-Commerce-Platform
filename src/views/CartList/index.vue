@@ -74,7 +74,7 @@ const cartStore=useCartStore()
       <div class="action">
         <div class="batch">
           共 {{ cartStore.allCount }} 件商品，已选择 {{ cartStore.selectedNumber }} 件，商品合计：
-          <span class="red">¥ {{ cartStore.allPrice.toFixed(2) }} </span>
+          <span class="red">¥ {{ cartStore.selectedPrice }} </span>
         </div>
         <div class="total">
           <el-button size="large" type="primary" >下单结算</el-button>

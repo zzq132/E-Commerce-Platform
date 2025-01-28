@@ -17,6 +17,12 @@ export const useCartStore = defineStore("Cart", () => {
         return accumulate
     }, 0))
     let isLogin = computed(() => userStore.userInfo.token)
+    let selectedPrice = computed(() => cartList.value.reduce((accumulate, current) => {
+        if (current.selected) {
+            accumulate += (current.price * current.count)
+        }
+        return accumulate
+    }, 0))
 
     async function addCart(goods) {
         if (isLogin.value) {
@@ -56,7 +62,7 @@ export const useCartStore = defineStore("Cart", () => {
         cartList.value = []
     }
 
-    return { cartList, addCart, delCart, allCount, allPrice, isAll, changeAllSelected, selectedNumber, clearCart, updateCartList }
+    return { cartList, addCart, delCart, allCount, allPrice, isAll, changeAllSelected, selectedNumber, selectedPrice, clearCart, updateCartList }
 }, {
     persist: true
 })
