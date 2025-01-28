@@ -3,12 +3,15 @@ import { getGoodDetailAPI } from '@/apis/detail.js'
 import {ref,onMounted} from 'vue'
 import { useRoute } from 'vue-router'
 import DetailHot from './components/DetailHot.vue'
+import { ElMessage } from 'element-plus'
+import { useCartStore } from '@/stores/cart.js'
 // ImageView,SKU组件进行了全局注册，所以不用再进行导入
 // import ImageView from '@/components/ImageView/index.vue'
 // import SKU from '@/components/XtxSku/index.vue'
 
 let goods=ref({})
 let route=useRoute()
+let cartStore=useCartStore()
 
 async function getGoodDetail(){
     let response=await getGoodDetailAPI(route.params.id)
@@ -20,8 +23,33 @@ onMounted(()=>{
     getGoodDetail()
 })
 
+let skuObj={}
 function skuChange(sku){
-    console.log(sku)
+    console.log("SKU:",sku)
+    skuObj=sku
+}
+
+let count=ref(1)
+function countChange(count){
+    console.log(count)
+}
+
+function addCart(){
+    if(skuObj.skuId){
+        // 规格已经选择
+        cartStore.addCart({
+            id:goods.value.id,
+            name:goods.value.name,
+            picture:goods.value.mainPictures[0],
+            price:goods.value.price,
+            count:count.value,
+            skuId:skuObj.skuId,
+            attrsText:skuObj.specsText,
+            selected:true
+        })
+    }else{
+        ElMessage.warning("请选择规格")
+    }
 }
 </script>
 
@@ -96,10 +124,10 @@ function skuChange(sku){
                             <!-- sku组件 -->
                             <SKU :goods="goods" @change="skuChange"></SKU>
                             <!-- 数据组件 -->
-
+                            <el-input-number v-model="count" :min="1" @change="countChange" />                   
                             <!-- 按钮组件 -->
                             <div>
-                                <el-button size="large" class="btn">
+                                <el-button size="large" class="btn" @click="addCart">
                                     加入购物车
                                 </el-button>
                             </div>
