@@ -8,4 +8,4 @@
 ## 使用
 1. 下载或clone仓库到本地
 2. 下载node.js并进行系统环境变量配置
-3. 打开项目根目录先后运行``npm install`以及`npm run dev`以启动项目
+3. 打开项目根目录先后运行`npm install`以及`npm run dev`以启动项目
