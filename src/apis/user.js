@@ -10,3 +10,13 @@ export function loginAPI(account, password) {
         }
     })
 }
+
+export const getLikeListAPI = (limit = 4) => {
+    return httpInstance({
+        url: '/goods/relevant',
+        method: 'get',
+        params: {
+            limit: limit
+        }
+    })
+}
