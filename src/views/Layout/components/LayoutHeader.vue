@@ -9,7 +9,7 @@ let categoryStore=useCategoryStore()
     <header class='app-header'>
         <div class="container">
             <h1 class="logo">
-                <RouterLink to="/">小兔鲜</RouterLink>
+                <RouterLink to="/"></RouterLink>
             </h1>
             <ul class="app-header-nav">
                 <li class="home">
@@ -44,10 +44,10 @@ let categoryStore=useCategoryStore()
 
         a {
             display: block;
-            height: 132px;
+            height: 100px;
             width: 100%;
             text-indent: -9999px;
-            background: url('@/assets/images/logo.png') no-repeat center 18px / contain;
+            background: url('@/assets/images/logo.png') no-repeat center 5px / contain;
         }
     }
 
