@@ -22,6 +22,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver({ importStyle: "sass" })],
     }),
   ],
+  base: './',
   resolve: {
     alias: {
       //路径转换，将@符合转换为"./src"
